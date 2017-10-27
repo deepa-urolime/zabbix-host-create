@@ -1,0 +1,28 @@
+---
+- hosts: all
+
+  tasks:
+
+  - name: register host on Zabbix server
+    local_action:
+     module: zabbix_host
+     server_url: http://13.127.2.125/zabbix/
+     login_user: Admin
+     login_password: GenApp123
+     host_name: samplehost2
+     host_groups:
+       - Discovered hosts
+     link_templates:
+       - Template OS Linux
+     status: enabled
+     state: present
+     force: false
+     interfaces:
+       - type: 1
+         main: 1
+         useip: 1
+         ip: 10.10.10.2
+         dns: samplehost
+         port: 10050
+...
+
